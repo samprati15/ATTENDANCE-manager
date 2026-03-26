@@ -50,7 +50,7 @@ export default function AttendancePage() {
       
       // Auto redirect to dashboard after success
       setTimeout(() => {
-        router.push('/dashboard');
+        router.push('/');
       }, 2000);
     }, 2500);
   };
@@ -59,7 +59,7 @@ export default function AttendancePage() {
     <div className="dashboard-container" style={{ textAlign: 'center', paddingBottom: '3rem' }}>
       <div className="header-section" style={{ borderBottom: 'none' }}>
         <button 
-          onClick={() => router.push('/dashboard')}
+          onClick={() => router.push('/')}
           style={{ background: 'transparent', border: '1px solid var(--card-border)', color: 'var(--text-secondary)', padding: '0.5rem 1rem', borderRadius: '6px', cursor: 'pointer' }}
         >
           ← Back

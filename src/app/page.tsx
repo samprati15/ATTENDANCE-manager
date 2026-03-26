@@ -1,74 +1,59 @@
 "use client";
 
-import './login.css';
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
-  const [role, setRole] = useState<'admin' | 'user'>('user');
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+export default function Dashboard() {
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate Authentication for demonstration
-    if (userId && password) {
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('auth_role', role);
-        localStorage.setItem('auth_user', userId);
-      }
-      router.push('/dashboard');
-    }
-  };
-
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
-        <div className="logo-placeholder" style={{ margin: '0 auto 1.5rem auto' }}>AI</div>
-        <h2>Smart Attendance System</h2>
-        <p className="subtitle">Facial Recognition Enabled</p>
-        
-        <div className="role-selector">
-          <button 
-            type="button" 
-            className={`role-btn ${role === 'user' ? 'active' : ''}`}
-            onClick={() => setRole('user')}
-          >
-            Employee / Student
-          </button>
-          <button 
-            type="button" 
-            className={`role-btn ${role === 'admin' ? 'active' : ''}`}
-            onClick={() => setRole('admin')}
-          >
-            Administrator
-          </button>
+    <div className="dashboard-container">
+      <div className="header-section">
+        <div className="logo-placeholder">AI</div>
+        <div className="title-area">
+          <h1>Welcome to Smart Attendance</h1>
+          <p>Role: <span style={{ textTransform: 'capitalize' }}>Demo User</span></p>
         </div>
-
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="input-group">
-            <label>User ID</label>
-            <input 
-              type="text" 
-              required 
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-              placeholder="Enter your ID"
-            />
+        <button 
+          className="primary-btn" 
+          onClick={() => router.push('/attendance')}
+          style={{ marginLeft: 'auto', padding: '0.8rem 1.5rem', borderRadius: '8px' }}
+        >
+          📷 Mark Attendance
+        </button>
+      </div>
+      
+      <div className="stats-row">
+        <div className="stat-item">
+          <div className="stat-label">Total Days</div>
+          <div className="stat-value">24</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-label">Present</div>
+          <div className="stat-value">22</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-label">Absent</div>
+          <div className="stat-value">2</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-label">Attendance %</div>
+          <div className="stat-value">91.6%</div>
+        </div>
+      </div>
+      
+      <div className="content-section">
+        <div className="section-title">Recent Activity</div>
+        <div className="tasks-list">
+          <div className="task-item">
+            <strong>Today</strong> - Checked in at 09:05 AM (Verified via Facial Auth)
           </div>
-          <div className="input-group">
-            <label>Password</label>
-            <input 
-              type="password" 
-              required 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-            />
+          <div className="task-item">
+            <strong>Yesterday</strong> - Checked in at 08:55 AM (Verified via Facial Auth)
           </div>
-          <button type="submit" className="primary-btn">Sign In</button>
-        </form>
+          <div className="task-item" style={{ opacity: 0.5 }}>
+            <strong>Monday</strong> - Absent
+          </div>
+        </div>
       </div>
     </div>
   );
