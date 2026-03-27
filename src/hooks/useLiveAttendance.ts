@@ -10,14 +10,21 @@ export type AttendanceEvent = {
 };
 
 const SIMULATED_USERS = [
-  { name: 'Alice Smith', role: 'Software Engineer' },
-  { name: 'Bob Johnson', role: 'Product Manager' },
-  { name: 'Charlie Davis', role: 'UX Designer' },
-  { name: 'Diana Prince', role: 'Data Analyst' },
-  { name: 'Evan Wright', role: 'HR Specialist' },
-  { name: 'Fiona Gallagher', role: 'Marketing Lead' },
-  { name: 'George Miller', role: 'DevOps Engineer' },
-  { name: 'Hannah Abbott', role: 'QA Tester' },
+  // Students
+  { name: 'Rahul Sharma', role: 'Student (Computer Science)' },
+  { name: 'Priya Patel', role: 'Student (Mechanical)' },
+  { name: 'Amit Kumar', role: 'Student (Electrical)' },
+  { name: 'Sarah Connor', role: 'Student (Business)' },
+  { name: 'John Doe', role: 'Student (Arts)' },
+  // Employees / Staff
+  { name: 'Evan Wright', role: 'Security Staff' },
+  { name: 'Fiona Gallagher', role: 'Admin Employee' },
+  { name: 'George Miller', role: 'Maintenance Staff' },
+  // Faculty
+  { name: 'Dr. Alice Smith', role: 'Professor (CS)' },
+  { name: 'Prof. Bob Johnson', role: 'Lecturer (Math)' },
+  // Others
+  { name: 'Diana Prince', role: 'Guest Lecturer' },
 ];
 
 const AUTH_METHODS = ['Verified via Facial Auth', 'Verified via RFID', 'Verified via Mobile App'];
@@ -65,8 +72,8 @@ export function useLiveAttendance(initialStats = { total: 145, present: 112, abs
       ]);
     }
 
-    // Interval to produce a new check-in every 3-8 seconds
-    const intervalTime = Math.floor(Math.random() * 5000) + 3000;
+    // Interval to produce a new check-in every 0.5-1.5 seconds for a hyper-fast real-time feel
+    const intervalTime = Math.floor(Math.random() * 1000) + 500;
     
     const interval = setInterval(() => {
       const newEvent = generateMockEvent();
